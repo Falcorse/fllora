@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body, html {
@@ -63,11 +63,15 @@
             align-items: center;
             padding: 20px 5%;
             width: 100%;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-link {
             text-decoration: none;
             color: white;
@@ -78,6 +82,7 @@
             transition: 0.3s;
         }
         .nav-link:hover { color: #a5d6a7; }
+        #cart-counter { color: #ffeb3b; }
 
         /* --- Hero Content --- */
         .hero-content {
@@ -90,7 +95,7 @@
         }
         .hero-content h1 { font-size: 3.5em; font-weight: 300; color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
 
-        /* --- Products Layout (Sidebar & 2x3 Grid) --- */
+        /* --- Products Layout --- */
         .products-layout {
             display: flex;
             flex: 1;
@@ -105,49 +110,57 @@
         }
 
         .sidebar h2 { font-size: 2em; margin-bottom: 5px; font-weight: bold; }
-        .sidebar p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
-
-        .filter-list { list-style: none; }
+        .filter-list { list-style: none; margin-top: 20px; }
         .filter-list li {
-            padding: 10px 0;
+            padding: 12px 0;
             cursor: pointer;
             transition: 0.2s;
             border-bottom: 1px solid rgba(255,255,255,0.2);
         }
-        .filter-list li:hover { color: #333; font-weight: bold; }
+        .filter-list li:hover { padding-left: 10px; background: rgba(255,255,255,0.1); }
 
         .product-grid {
             width: 75%;
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
-            grid-template-rows: repeat(2, 1fr);
-            gap: 20px;
+            gap: 25px;
             padding: 40px;
             align-content: start;
         }
         
         .product-card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
             transition: 0.3s;
             color: #333;
             text-align: center;
-            height: fit-content;
         }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
         
-        /* IMAGE SIZE STYLING */
         .product-image { 
             width: 100%; 
-            height: 220px; /* Fixed height for uniformity */
-            object-fit: cover; /* Ensures images fill space without stretching */
-            display: block;
+            height: 200px; 
+            object-fit: cover;
         }
 
         .product-info { padding: 15px; }
-        .product-info p { font-weight: bold; margin-bottom: 5px; }
-        .add-btn { background: #4CAF50; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; border-radius: 4px; font-weight: bold; margin-top: 10px; }
+        .product-info p { font-weight: bold; margin-bottom: 5px; font-size: 1.1em; }
+        .product-info small { color: #2e7d32; font-weight: bold; font-size: 1em; }
+        
+        .add-btn { 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            width: 100%; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        .add-btn:active { transform: scale(0.95); }
 
         /* --- Form Styling --- */
         .form-box {
@@ -159,24 +172,22 @@
             color: #333;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .form-box h2 { color: #2e7d32; margin-bottom: 20px; text-align: center; letter-spacing: 2px; }
-        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; outline: none; }
-        .submit-btn { background: #2e7d32; color: white; border: none; padding: 14px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; border-radius: 5px; }
+        .form-box h2 { color: #2e7d32; margin-bottom: 20px; text-align: center; }
+        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        .submit-btn { background: #2e7d32; color: white; border: none; padding: 14px; width: 100%; cursor: pointer; font-weight: bold; border-radius: 5px; }
 
         /* --- About Styling --- */
         .about-content {
-            max-width: 850px;
+            max-width: 800px;
             background: rgba(0,0,0,0.85); 
             padding: 50px;
             border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #ffffff; 
+            color: white;
         }
-        .about-content h2 { font-size: 3em; color: #a5d6a7; margin-bottom: 20px; }
-        .about-content p { font-size: 1.1em; line-height: 1.8; margin-bottom: 20px; color: #ffffff; }
+        .about-content h2 { color: #a5d6a7; font-size: 2.5em; margin-bottom: 20px; }
 
-        .contact-bar { background-color: #000; color: white; padding: 10px 5%; font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+        .contact-bar { background-color: #000; color: white; padding: 10px 5%; font-size: 11px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -185,7 +196,7 @@
         <div class="bg-style">
             <div class="overlay-layer">
                 <nav class="navbar">
-                    <div class="nav-link" style="font-size: 20px;">FLORA</div>
+                    <div class="nav-link" style="font-size: 24px;">FLORA</div>
                     <div class="nav-links">
                         <span class="nav-link" onclick="openPage('home-page')">HOME</span>
                         <span class="nav-link" onclick="openPage('products-page')">PRODUCTS</span>
@@ -208,50 +219,70 @@
                 <nav class="navbar">
                     <div class="nav-link" onclick="openPage('home-page')">← BACK TO HOME</div>
                     <div class="nav-links">
-                        <span class="nav-link">🛒 CART</span>
+                        <span class="nav-link" id="cart-counter" onclick="showCart()">🛒 CART (0)</span>
                     </div>
                 </nav>
                 
                 <div class="products-layout">
                     <aside class="sidebar">
                         <h2>PRODUCTS</h2>
-                        <p>Filters</p>
                         <ul class="filter-list">
                             <li>All Plants</li>
                             <li>Indoor Plants</li>
                             <li>Outdoor Plants</li>
                             <li>Flowering Plants</li>
                             <li>Succulents</li>
-                            <li>Paving Plants</li>
-                            <li>Gifts & Kits</li>
-                            <li>Accessories</li>
                         </ul>
                     </aside>
 
                     <main class="product-grid">
                         <div class="product-card">
-                            <img src="https://nurserynisarga.in/wp-content/uploads/2019/10/Untitled-design-2023-08-19T153243.125.webp" class="product-image" alt="Rose plant">
-                            <div class="product-info"><p>Rose plant</p><small>SR/- 50</small><button class="add-btn">Add to Cart</button></div>
+                            <img src="https://nurserynisarga.in/wp-content/uploads/2019/10/Untitled-design-2023-08-19T153243.125.webp" class="product-image">
+                            <div class="product-info">
+                                <p>Rose Plant</p>
+                                <small>SR 50</small>
+                                <button class="add-btn" onclick="addToCart('Rose Plant', 50)">Add to Cart</button>
+                            </div>
                         </div>
                         <div class="product-card">
-                            <img src="http://indiangardens.in/cdn/shop/products/1_efe5c395-c5a8-46e2-a3e3-c95b796440ec.jpg?v=1680160813" class="product-image" alt="Bougenvilla">
-                            <div class="product-info"><p>Bougenvilla</p><small>SR/- 45</small><button class="add-btn">Add to Cart</button></div>
+                            <img src="http://indiangardens.in/cdn/shop/products/1_efe5c395-c5a8-46e2-a3e3-c95b796440ec.jpg?v=1680160813" class="product-image">
+                            <div class="product-info">
+                                <p>Bougenvilla</p>
+                                <small>SR 45</small>
+                                <button class="add-btn" onclick="addToCart('Bougenvilla', 45)">Add to Cart</button>
+                            </div>
                         </div>
                         <div class="product-card">
-                            <img src="https://www.houseplant411.com/wp-content/uploads/confederate-jasmine.jpg" class="product-image" alt="Jasmine">
-                            <div class="product-info"><p>Jasmine plant</p><small>SR/- 20</small><button class="add-btn">Add to Cart</button></div>
+                            <img src="https://www.houseplant411.com/wp-content/uploads/confederate-jasmine.jpg" class="product-image">
+                            <div class="product-info">
+                                <p>Jasmine Plant</p>
+                                <small>SR 20</small>
+                                <button class="add-btn" onclick="addToCart('Jasmine Plant', 20)">Add to Cart</button>
+                            </div>
                         </div>
                         <div class="product-card">
-                            <img src="http://www.gardensaliveblog.com/wp-content/uploads/2015/03/CompactSunflower_3199.jpg" class="product-image" alt="Sunflower">
-                            <div class="product-info"><p>Sunflower plant</p><small>SR/- 35</small><button class="add-btn">Add to Cart</button></div>
+                            <img src="http://www.gardensaliveblog.com/wp-content/uploads/2015/03/CompactSunflower_3199.jpg" class="product-image">
+                            <div class="product-info">
+                                <p>Sunflower</p>
+                                <small>SR 35</small>
+                                <button class="add-btn" onclick="addToCart('Sunflower', 35)">Add to Cart</button>
+                            </div>
                         </div>
                         <div class="product-card">
-                            <img src="https://www.naturebring.com/wp-content/uploads/2017/08/lavender-in-pot-new.jpg" class="product-image" alt="Lavender">
-                            <div class="product-info"><p>Lavender plant</p><small>SR/- 40</small><button class="add-btn">Add to Cart</button></div>
+                            <img src="https://www.naturebring.com/wp-content/uploads/2017/08/lavender-in-pot-new.jpg" class="product-image">
+                            <div class="product-info">
+                                <p>Lavender</p>
+                                <small>SR 40</small>
+                                <button class="add-btn" onclick="addToCart('Lavender', 40)">Add to Cart</button>
+                            </div>
                         </div>
                         <div class="product-card">
-                            <img src="https://mobileimages.lowes.com/productimages/34651164-0c78-4215-8eb5-64c7b1480cf3/62476498.jpg" class="product-image" alt="Blue Hydrangea plant">
-                            <div class="product-info"><p>Blue Hydrangea plant</p><small>SR/- 25</small><button class="add-btn">Add to Cart</button></div>
+                            <img src="https://mobileimages.lowes.com/productimages/34651164-0c78-4215-8eb5-64c7b1480cf3/62476498.jpg" class="product-image">
+                            <div class="product-info">
+                                <p>Blue Hydrangea</p>
+                                <small>SR 25</small>
+                                <button class="add-btn" onclick="addToCart('Blue Hydrangea', 25)">Add to Cart</button>
+                            </div>
                         </div>
                     </main>
                 </div>
@@ -264,12 +295,12 @@
             <div class="overlay-layer" style="justify-content:center;">
                 <div class="form-box">
                     <h2>SECURE SIGN IN</h2>
-                    <form onsubmit="event.preventDefault(); alert('Login Successful'); openPage('home-page')">
+                    <form onsubmit="event.preventDefault(); alert('Welcome back!'); openPage('home-page')">
                         <input type="email" placeholder="Email Address" required>
                         <input type="password" placeholder="Password" required>
                         <button type="submit" class="submit-btn">SIGN IN</button>
                     </form>
-                    <p style="text-align:center; margin-top:15px; font-size:12px; cursor:pointer; color:#666;" onclick="openPage('home-page')">Return to Home</p>
+                    <p style="text-align:center; margin-top:15px; font-size:12px; cursor:pointer;" onclick="openPage('home-page')">Return to Home</p>
                 </div>
             </div>
         </div>
@@ -280,17 +311,16 @@
             <div class="overlay-layer" style="justify-content:center;">
                 <div class="form-box">
                     <h2>FEEDBACK</h2>
-                    <form onsubmit="event.preventDefault(); alert('Feedback Received!'); openPage('home-page')">
+                    <form onsubmit="event.preventDefault(); alert('Thank you for helping us grow!'); openPage('home-page')">
                         <input type="text" placeholder="Your Name" required>
                         <select>
-                            <option>Rate your experience: 5 Stars</option>
-                            <option>4 Stars</option>
-                            <option>3 Stars</option>
+                            <option>5 Stars - Excellent</option>
+                            <option>4 Stars - Good</option>
+                            <option>3 Stars - Average</option>
                         </select>
                         <textarea placeholder="Tell us how we can grow..." rows="4"></textarea>
                         <button type="submit" class="submit-btn">SUBMIT FEEDBACK</button>
                     </form>
-                    <p style="text-align:center; margin-top:15px; font-size:12px; cursor:pointer; color:#666;" onclick="openPage('home-page')">Cancel</p>
                 </div>
             </div>
         </div>
@@ -301,20 +331,79 @@
             <div class="overlay-layer" style="justify-content:center; align-items:center;">
                 <div class="about-content">
                     <h2>OUR STORY</h2>
-                    <p>At Flora, we believe that every space becomes more alive, inspiring, and calming with the presence of nature. Our mission is to make caring for nature more accessible and sustainable for everyone.</p>
-                    <p>Whether you are a beginner or a seasoned plant lover, we are here to help you grow with confidence. We carefully source healthy, vibrant, and happy plants from nurseries we trust, making sure they thrive long after they reach your home.</p>
-                    <button onclick="openPage('home-page')" style="background:#a5d6a7; color:#1a1a1a; border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer;">EXPLORE THE GARDEN</button>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">At Flora, we believe every space becomes more alive with nature. Our mission is to make plant care accessible, sustainable, and joyful for everyone.</p>
+                    <button onclick="openPage('products-page')" style="background:#a5d6a7; color:#1a1a1a; border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer;">START YOUR GARDEN</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Store cart items in an array (Saved to local storage)
+        let cart = JSON.parse(localStorage.getItem('floraCart')) || [];
+
+        // Run UI update on load
+        window.onload = updateCartCounter;
+
         function openPage(pageId) {
             const pages = document.querySelectorAll('.desktop-page');
             pages.forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             document.getElementById(pageId).scrollTop = 0;
+        }
+
+        function addToCart(plantName, price) {
+            // Add object to array
+            cart.push({ name: plantName, price: price });
+            
+            // Save to localStorage
+            localStorage.setItem('floraCart', JSON.stringify(cart));
+            
+            // Update the UI counter
+            updateCartCounter();
+
+            // Provide visual feedback on the button
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "ADDED! ✓";
+            btn.style.background = "#2e7d32";
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "#4CAF50";
+            }, 800);
+        }
+
+        function updateCartCounter() {
+            const counter = document.getElementById('cart-counter');
+            if (counter) {
+                counter.innerText = `🛒 CART (${cart.length})`;
+            }
+        }
+
+        function showCart() {
+            if (cart.length === 0) {
+                alert("Your cart is empty! Browse our products to add some plants.");
+                return;
+            }
+
+            let total = 0;
+            let receipt = "--- YOUR FLORA SELECTION ---\n\n";
+            
+            cart.forEach((item, index) => {
+                receipt += `${index + 1}. ${item.name} - SR ${item.price}\n`;
+                total += item.price;
+            });
+
+            receipt += `\n--------------------------\nTOTAL AMOUNT: SR ${total}`;
+            receipt += `\n\nWould you like to complete your purchase?`;
+
+            if (confirm(receipt)) {
+                alert("Thank you! Your plants will be delivered soon.");
+                cart = []; // Clear cart
+                localStorage.removeItem('floraCart');
+                updateCartCounter();
+            }
         }
     </script>
 </body>
